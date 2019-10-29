@@ -1,0 +1,17 @@
+// The 'weidu backup path' for extra tp2 files needs to be the same as the main tp2 'weidu backup path',
+// otherwise, any kind of mod manager won't able to detect which 'mod resource folder' needs to copy.
+BACKUP ~MultiTp2Example\backup~
+SUPPORT ~~
+
+// use translation from other folder which is distributed inside mod package
+LANGUAGE ~English~ ~english~ ~MultiTp2Example\lang\english\MultiTp2Example-Extra.tra~
+
+BEGIN @2000
+DESIGNATED 2000 // DESIGNATED numbers should be unique across all tp2 files:MultiTp2Example-Main.tp2 and MultiTp2Example-Extra.tp2
+
+PRINT "%MOD_FOLDER%"
+
+ACTION_IF NOT FILE_EXISTS ~override\MultiTp2Example-Extra.txt~ BEGIN
+    // use resources from other folder which is distributed inside mod package
+    COPY ~MultiTp2Example\MultiTp2Example-Extra.txt~ ~override~
+END
